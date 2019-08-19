@@ -1,9 +1,4 @@
-export interface Comuna {
-    id: number;
-    nombre: string;
-    costo: number;
-    vecinos?: any[];
-}
+import { Comuna } from "../interfaces/comuna";
 
 export const COMUNAS: Comuna[] = [
     {
