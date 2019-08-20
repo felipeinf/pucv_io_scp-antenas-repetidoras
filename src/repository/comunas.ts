@@ -1,6 +1,6 @@
 import { Comuna } from "../interfaces/comuna";
 
-export const COMUNAS: Comuna[] = [
+export const COMUNAS: Array<Comuna> = [
     {
         id: 2,
         nombre: 'Calle Larga',
@@ -165,25 +165,25 @@ export const COMUNAS: Comuna[] = [
     },
     {
         id: 29,
-        nombre: 'Santa Mar´ıa',
+        nombre: 'Santa Marıa',
         costo: 3.5,
         vecinos: [3,5,27,28]
     },
     {
         id: 30,
-        nombre: 'Quilpu´e',
+        nombre: 'Quilpue',
         costo: 2,
         vecinos: [14,16,34,36,37,38]
     },
     {
         id: 31,
-        nombre: 'Conc´on',
+        nombre: 'Concon',
         costo: 1.5,
         vecinos: [14,35,38]
     },
     {
         id: 33,
-        nombre: 'Puchuncav´ı',
+        nombre: 'Puchuncavı',
         costo: 2,
         vecinos: [10,13,15,17,35]
     },
@@ -201,7 +201,7 @@ export const COMUNAS: Comuna[] = [
     },
     {
         id: 36,
-        nombre: 'Valpara´ıso',
+        nombre: 'Valparaıso',
         costo: 2,
         vecinos: [30,34,38]
     },
@@ -213,7 +213,7 @@ export const COMUNAS: Comuna[] = [
     },
     {
         id: 38,
-        nombre: 'Vi˜na del Mar',
+        nombre: 'Vina del Mar',
         costo: 1.5,
         vecinos: [30,31,36]
     },
