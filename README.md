@@ -25,12 +25,13 @@ npm install
 
 ## Deployment 📦
 
-_Agrega notas adicionales sobre como hacer deploy_
+_Para desplegar el proyecto ejecute el siguiente comando:_
+
+```
+npm start
+```
 
 ## Construido con 🛠️
 
-_Menciona las herramientas que utilizaste para crear tu proyecto_
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - El framework web usado
-* [Maven](https://maven.apache.org/) - Manejador de dependencias
-* [ROME](https://rometools.github.io/rome/) - Usado para generar RSS
+* [TypeScript](https://www.typescriptlang.org/) - TypeScript es un superconjunto de JavaScript que se transpila a este mismo.
+* [Gulp](https://gulpjs.com/) - Framework utilizado para automatizar la compilación del proyecto.
