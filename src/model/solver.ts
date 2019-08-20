@@ -84,13 +84,13 @@ export class Solver {
 
         //Se pobla el conjunto con los ids
         comunas.forEach((comuna: Comuna) => {
-            if(! conjunto.includes(comuna.id)){
+            if(conjunto.indexOf(comuna.id) === -1){
                 conjunto.push(comuna.id);
             }
         });
 
         universo.forEach((id: number) => {
-            if( !conjunto.includes(id)){
+            if( conjunto.indexOf(id) === -1){
                 return false;
             }
         });
