@@ -1,58 +1,26 @@
 # Set covering problem: Instalación de antenas repetidoras
 
-_Este proyecto corresponde a la tarea 2 de la asignatura Investigacion de operaciones, ha sido desarrollado utilizando Typescript implementando el patron de diseño MVC extendido._
+_Este proyecto corresponde a la tarea 2 de la asignatura Investigacion de operaciones, ha sido desarrollado utilizando lenguaje Typescript e implementando el patron de diseño MVC extendido._
 
-## Comenzando 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos de desarrollo y pruebas._
+## Comenzando
+
+_Para ejecutar el proyecto de Typescript debe seguir las siguientes instrucciones._
 
 Mira **Deployment** para conocer como desplegar el proyecto.
 
-
 ### Pre-requisitos 📋
 
-_Que cosas necesitas para instalar el software y como instalarlas_
+_Antes de comenzar asegúrese tener instalado Node.js y Npm en su entorno de desarrollo._
+
+* Para obtener Node.js vaya a [nodejs.org](https://nodejs.org/en/).
+
+### Instalación de dependencias 🔧
+
+_Para instalar las depencias del proyecto ejecute el siguiente comando:_
 
 ```
-Da un ejemplo
-```
-
-### Instalación 🔧
-
-_Una serie de ejemplos paso a paso que te dice lo que debes ejecutar para tener un entorno de desarrollo ejecutandose_
-
-_Dí cómo será ese paso_
-
-```
-Da un ejemplo
-```
-
-_Y repite_
-
-```
-hasta finalizar
-```
-
-_Finaliza con un ejemplo de cómo obtener datos del sistema o como usarlos para una pequeña demo_
-
-## Ejecutando las pruebas ⚙️
-
-_Explica como ejecutar las pruebas automatizadas para este sistema_
-
-### Analice las pruebas end-to-end 🔩
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
-```
-
-### Y las pruebas de estilo de codificación ⌨️
-
-_Explica que verifican estas pruebas y por qué_
-
-```
-Da un ejemplo
+npm install
 ```
 
 ## Deployment 📦
