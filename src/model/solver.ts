@@ -4,20 +4,21 @@ import { Comuna } from "../interfaces/comuna";
 export class Solver {
 
     private comunas: Array<Comuna>;
+    private universo: number[];
     private comunaService: ComunaService;
 
     constructor(){
         this.comunaService = new ComunaService();  
         this.comunas = this.comunaService.getComunas();
+        this.universo = this.comunaService.getIdsComunas();
     }
 
     private simulatedAnnealing(){
-
         let TempActual: number = 80;
         let mejorSol: Array<Comuna>;
         const Tmin: number = 0.5;
         let tempAnterior: number;
-        let solInicial: Array<Comuna> = this.solucionInicial();
+        let solInicial: Array<Comuna>;
         let solActual: Array<Comuna>;
         let probabilidad: number;
         let variacionObj: number; 
@@ -44,68 +45,56 @@ export class Solver {
     
     }
 
-    public buscarSolucion(): void {
+    public buscarSolucion(): Array<Comuna> {
+        let posibleSolucion: Array<Comuna>;
+        let comunas = this.comunas;
 
-        /*this.comunas.forEach((comuna: Comuna) => {
-            console.log('\n'+comuna.nombre);
-            console.log(comuna.id);
-            comuna.vecinos.sort((a: number, b: number) => a - b);
-            console.log(comuna.vecinos);
-        });*/
+        posibleSolucion = new Array<Comuna>();
+        comunas.sort((a:Comuna, b:Comuna) => (Math.random() - Math.random()) * Math.random());
+        console.log(comunas);
+        
 
-        this.simulatedAnnealing();
-    
-    }
-
-    private solucionInicial(): Array<Comuna> {
-        let solucionInicial: Array<Comuna> = this.comunas;
-
-        /**
-         * Se itera 20 veces, eliminando 10 valores, quedando con 10 valores aleatorios como
-         * solución inicial
-         */
-        for (let i = 0; i <= this.comunas.length - 10; i++) {
-            solucionInicial.sort(() => Math.random() - 5);
-            solucionInicial.pop();
+        for (const comuna of comunas) {
+            posibleSolucion.push(comuna);
+           
+            if(this.formaUniverso(posibleSolucion)){
+                return posibleSolucion;
+            }
         }
-
-        return solucionInicial;
+        return posibleSolucion;
     }
 
-    private costoTotal(comunas: Array<Comuna>): number { 
-        return comunas
-            .map((comuna: Comuna) => comuna.costo)
-            .reduce((a:number, b: number) => a + b);
+    private funcionObjetivo(solucion: Array<Comuna> ) : number {
+        return;
     }
 
     private formaUniverso (comunas: Array<Comuna>) : boolean {
-        let universo: number[] = this.comunaService.getIdsComunas();
-        let conjunto: number[];
+        let conjunto: Array<number>;
 
-        //Se pobla el conjunto con los ids
+        conjunto = new Array<number>();
+
         comunas.forEach((comuna: Comuna) => {
-            if(! conjunto.includes(comuna.id)){
+            if(conjunto.indexOf(comuna.id) === -1){
                 conjunto.push(comuna.id);
             }
+
+            comuna.vecinos.forEach((vecino: number) => {
+                if(conjunto.indexOf(vecino) === -1){
+                    conjunto.push(vecino);
+                }
+            });
         });
 
-        universo.forEach((id: number) => {
-            if( !conjunto.includes(id)){
+        this.universo.forEach((id: number) => {
+            if(conjunto.indexOf(id) === -1){
                 return false;
             }
         });
 
-        return false;
+        return true;
     }
 
-    /**
-     * Para calcular la funcion objetivo se debe 
-     */
-
-    private funcionObjetivo(solucion: Array<Comuna> ) : number {
-
-
-
-        return;
+    private costoTotal(comunas: Array<Comuna>): number { 
+        return comunas.map((comuna: Comuna) => comuna.costo).reduce((a:number, b: number) => a + b);
     }
 }
