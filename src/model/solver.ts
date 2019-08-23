@@ -51,16 +51,15 @@ export class Solver {
 
         posibleSolucion = new Array<Comuna>();
         comunas.sort((a:Comuna, b:Comuna) => (Math.random() - Math.random()) * Math.random());
-        console.log(comunas);
-        
 
-        for (const comuna of comunas) {
+        comunas.forEach((comuna) => {
             posibleSolucion.push(comuna);
            
             if(this.formaUniverso(posibleSolucion)){
                 return posibleSolucion;
             }
-        }
+        });
+
         return posibleSolucion;
     }
 
@@ -83,6 +82,7 @@ export class Solver {
                     conjunto.push(vecino);
                 }
             });
+            
         });
 
         this.universo.forEach((id: number) => {
