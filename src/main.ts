@@ -5,7 +5,9 @@ let solver = new Solver();
 
 let solucion:Array<Comuna> = solver.buscarSolucion();
 
-solucion.forEach((comuna: Comuna) => {
-    console.log(comuna.nombre);
-    
-});
+//console.log("Total antenas: " + solucion.length);
+//console.log(solver.costoTotal(solucion));
+
+for (let i = 0; i < 10; i++) {
+   console.log(solver.generarNumeroAleatorio(0,1));   
+}
