@@ -1,108 +1,78 @@
 import { ComunaService } from "../services/comuna";
 import { Comuna } from "../interfaces/comuna";
+import { Comunas } from "./comunas";
 
 export class Solver {
 
-    private comunas: Array<Comuna>;
+    private comunas: Comunas;
     private universo: number[];
     private comunaService: ComunaService;
 
-    constructor(){
-        this.comunaService = new ComunaService();  
-        this.comunas = this.comunaService.getComunas();
+    constructor(){ 
+        this.comunaService = new ComunaService();
         this.universo = this.comunaService.getIdsComunas();
     }
 
-    private simulatedAnnealing(){
-        let TempActual: number = 80;
-        let mejorSol: Array<Comuna>;
-        const Tmin: number = 0.5;
-        let tempAnterior: number;
-        let solInicial: Array<Comuna>;
-        let solActual: Array<Comuna>;
-        let probabilidad: number;
-        let variacionObj: number; 
-        let funcionObjActual: number;
+    public simulatedAnnealing() : Comunas{
+        let TempActual: number = 100000;
+        let mejorSol: Comunas = this.buscarSolucion();
+        const Tempmin: number = 0;
+        let solActual: Comunas = new Comunas();
+        let probabilidad: number = 0;
+        let variacionFo: number; 
+        let solOptima: Comunas = this.buscarSolucion();
+        
+        while(TempActual > Tempmin) {
 
-        while (TempActual > Tmin) {
+            solActual = this.buscarSolucion();
+            
+            variacionFo = this.funcionObjetivo(solActual) - this.funcionObjetivo(mejorSol);
 
-            variacionObj = this.funcionObjetivo(solActual) - this.funcionObjetivo(mejorSol);
-
-            if(variacionObj < 0) {
+            if(variacionFo < 0) {
                 mejorSol = solActual;
             }
             else {
-                probabilidad = Math.exp(-variacionObj/TempActual);
+                probabilidad = Math.exp(-variacionFo/TempActual);
 
-                if(probabilidad > 3) { // Falta establecer el random
+                if(this.generarNumeroAleatorio(0,1) < probabilidad) {
                     mejorSol = solActual;
                 }
             }
 
-            tempAnterior = TempActual;
-            TempActual = 0.4 * tempAnterior;
+            TempActual = 0.4 * TempActual;
+
+            console.log("iteracion");
+
+            if (this.funcionObjetivo(solOptima) > this.funcionObjetivo(mejorSol)) {
+
+                solOptima = mejorSol;
+                console.log("fjff");
+            }
+
         }
-    
+
+        return solOptima;
     }
 
-    public buscarSolucion(): Array<Comuna> {
-        let posibleSolucion: Array<Comuna>;
-        let comunas = this.comunas;
-
-        posibleSolucion = new Array<Comuna>();
+    public buscarSolucion():Comunas {
+        let posibleSolucion: Comunas;
+        let comunas: Array<Comuna> = this.comunaService.getComunas();
+    
+        posibleSolucion = new Comunas();
         comunas.sort((a:Comuna, b:Comuna) => (Math.random() - Math.random()) * Math.random());    
 
         do{  
-            posibleSolucion.push(comunas.shift());            
-        }while(!this.formaUniverso(posibleSolucion));
+            posibleSolucion.agregarComuna(comunas.shift());            
+        }while(! posibleSolucion.formaUniverso(this.universo));
       
         return posibleSolucion;
     }
     
-
-    private funcionObjetivo(solucion: Array<Comuna> ) : number {
-        return;
+    private funcionObjetivo(solucion: Comunas ) : number {
+        return solucion.costoTotal();
     }
 
-    private crearVecindad(comunas: Array<Comuna>): number[]{
-        let vecindad: Array<number>;
-
-        vecindad = new Array<number>();
-
-        comunas.forEach((comuna: Comuna) => {
-            if( !vecindad.includes(comuna.id)){
-                vecindad.push(comuna.id);
-            }
-
-            comuna.vecinos.forEach((idVecino: number) => {
-                if( !vecindad.includes(idVecino)){
-                    vecindad.push(idVecino);
-                }
-            })
-        });
-        
-        vecindad =  vecindad.sort((a: number, b: number) => a - b);
-
-        return vecindad;
-    }
-
-    private formaUniverso (comunas: Array<Comuna>) : boolean {
-        let vecindad: Array<number>;
-
-        vecindad = this.crearVecindad(comunas);       
-
-        if(this.universo.length !== vecindad.length){
-            return false;
-        }
-
-        return true;
-    }
-
-    public costoTotal(comunas: Array<Comuna>): number { 
-        return comunas.map((comuna: Comuna) => comuna.costo).reduce((a:number, b: number) => a + b);
-    }
-
-    public generarNumeroAleatorio(limInf: number, limSup: number){
-        return (Math.random() * (limSup - limInf) + limInf).toFixed(2);
+    private generarNumeroAleatorio(limInf: number, limSup: number){
+        return parseFloat((Math.random() * (limSup - limInf) + limInf).toFixed(2));
     }
 }

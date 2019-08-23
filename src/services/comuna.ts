@@ -5,21 +5,22 @@ export class ComunaService {
     private comunas: Array<Comuna>;
 
     constructor(){
+        this.comunas = new Array<Comuna>();
         this.comunas = COMUNAS;
     }
 
     public getComunas(): Array<Comuna> {
-        return this.comunas;
+        return this.comunas.map((comuna) => comuna);
     }
 
     public getComunaById(id: number): Comuna {
         return this.comunas.filter((comuna: Comuna) => id === comuna.id)[0];
     }
 
-    /*public getVecinosById(id: number): Array<Comuna> {
+    public getVecinosById(id: number): Array<Comuna> {
         const comuna: Comuna = this.getComunaById(id);
         return this.comunas.filter((data: Comuna) => data.vecinos.includes(comuna.id));
-    }*/
+    }
 
     public getIdsComunas(): number[] {
         return this.comunas.map((data: Comuna) => data.id);

@@ -1,13 +1,15 @@
 import { Solver } from "./model/solver";
-import { Comuna } from "./interfaces/comuna";
+import { Comunas } from "./model/comunas";
 
-let solver = new Solver();
+let solver: Solver;
 
-let solucion:Array<Comuna> = solver.buscarSolucion();
 
-//console.log("Total antenas: " + solucion.length);
-//console.log(solver.costoTotal(solucion));
+    solver = new Solver();
+    let solucion: Comunas = solver.simulatedAnnealing();
+    solucion.mostrarComunas();
+    console.log();
+    console.log("Costo total: " + solucion.costoTotal());
+    console.log("Total antenas: " + solucion.totalComunas());
 
-for (let i = 0; i < 10; i++) {
-   console.log(solver.generarNumeroAleatorio(0,1));   
-}
+
+    
