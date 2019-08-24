@@ -62,7 +62,7 @@ export class Comunas {
     
     public mostrarComunas(): void {
         this.comunas.forEach((comuna:Comuna)=>{
-            console.log(comuna);
+            console.log(comuna+"\n");
         });
     }
 }
