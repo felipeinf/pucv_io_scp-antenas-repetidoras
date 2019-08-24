@@ -35,6 +35,6 @@ npm start
 
 ## Autores
 
-**Felipe Concha Almeida**
-**Byron Guerrero Fuel**
+**Felipe Concha Almeida**<br>
+**Byron Guerrero Fuel**<br>
 **Hector Gutierrez Moya**
