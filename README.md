@@ -1,7 +1,6 @@
 # Set covering problem: Instalación de antenas repetidoras
 
-_Este proyecto corresponde a la tarea 2 de la asignatura Investigacion de operaciones, ha sido desarrollado utilizando lenguaje Typescript e implementando el patron de diseño MVC extendido._
-
+_Este proyecto corresponde a la tarea 2 de la asignatura Investigacion de operaciones, ha sido desarrollado utilizando lenguaje Typescript en el entorno de ejecución Node.js._
 
 ## Comenzando
 
