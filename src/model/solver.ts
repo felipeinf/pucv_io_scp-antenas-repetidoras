@@ -3,10 +3,8 @@ import { Comuna } from "../interfaces/comuna";
 import { Comunas } from "./comunas";
 
 export class Solver {
-
-    private comunas: Comunas;
-    private universo: number[];
     private comunaService: ComunaService;
+    private universo: number[];
 
     constructor(){ 
         this.comunaService = new ComunaService();
@@ -23,9 +21,7 @@ export class Solver {
         let solOptima: Comunas = this.buscarSolucion();
         
         while(TempActual > Tempmin) {
-
             solActual = this.buscarSolucion();
-            
             variacionFo = this.funcionObjetivo(solActual) - this.funcionObjetivo(mejorSol);
 
             if(variacionFo < 0) {
@@ -41,14 +37,9 @@ export class Solver {
 
             TempActual = 0.4 * TempActual;
 
-            console.log("iteracion");
-
             if (this.funcionObjetivo(solOptima) > this.funcionObjetivo(mejorSol)) {
-
                 solOptima = mejorSol;
-                console.log("fjff");
             }
-
         }
 
         return solOptima;

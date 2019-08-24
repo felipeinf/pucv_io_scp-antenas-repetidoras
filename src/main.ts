@@ -1,15 +1,17 @@
 import { Solver } from "./model/solver";
 import { Comunas } from "./model/comunas";
 
-let solver: Solver;
+instalacionAntenas();
 
+function instalacionAntenas(){
+    let solver: Solver;
+    let solucion: Comunas;
 
     solver = new Solver();
-    let solucion: Comunas = solver.simulatedAnnealing();
+    solucion = solver.simulatedAnnealing();
+    console.log("\nCosto total de instalación: " + solucion.costoTotal());
+    console.log("Total de antenas por instalar: " + solucion.totalComunas());
+    console.log("Comunas seleccionadas para la instalacion: \n");
     solucion.mostrarComunas();
-    console.log();
-    console.log("Costo total: " + solucion.costoTotal());
-    console.log("Total antenas: " + solucion.totalComunas());
-
-
-    
+    console.log("\n");
+}

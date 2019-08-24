@@ -4,7 +4,7 @@ import { Comuna } from "../interfaces/comuna";
 export class Comunas {
     private comunas: Array<Comuna>;
 
-    constructor(comunas?: Array<Comuna>){ 
+    constructor(comunas?: Array<Comuna>) { 
        this.comunas = comunas ? comunas : new Array<Comuna>();
     }
 
@@ -20,11 +20,11 @@ export class Comunas {
         return this.comunas.length;
     }
 
-    public agregarComuna(comuna: Comuna){
+    public agregarComuna(comuna: Comuna) {
         this.comunas.push(comuna);
     }
 
-    private crearVecindad(): number[]{
+    private crearVecindad(): number[] {
         let vecindad: Array<number>;
 
         vecindad = new Array<number>();
@@ -38,7 +38,7 @@ export class Comunas {
                 if( !vecindad.includes(idVecino)){
                     vecindad.push(idVecino);
                 }
-            })
+            });
         });
         
         return vecindad.sort((a: number, b: number) => a - b);
@@ -60,9 +60,9 @@ export class Comunas {
         return this.comunas.map((comuna: Comuna) => comuna.costo).reduce((a:number, b: number) => a + b);
     }
     
-    mostrarComunas(){
+    public mostrarComunas(): void {
         this.comunas.forEach((comuna:Comuna)=>{
             console.log(comuna);
-        })
+        });
     }
 }
