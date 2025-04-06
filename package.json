@@ -14,7 +14,7 @@
   "devDependencies": {
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.1",
-    "nodemon": "^1.19.1",
+    "nodemon": "^3.1.9",
     "typescript": "^3.5.3"
   }
 }
